@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:audioplayers/audio_cache.dart';
 
+import "mainScreen.dart";
+
 class MainMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Center(
           child: Container(
         child: Column(
@@ -13,7 +16,14 @@ class MainMenu extends StatelessWidget {
           children: [
             Container(
               child: Center(
-                child: Text("Simon Game"),
+                child: Text(
+                  "Simon Game",
+                  style: GoogleFonts.pressStart2p(
+                    color: Colors.white,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ),
             ),
             Container(
@@ -29,8 +39,19 @@ class MainMenu extends StatelessWidget {
               child: FlatButton(
                 child: Text(
                   "Single Player",
+                  style: GoogleFonts.fredokaOne(
+                    color: Colors.red,
+                    textStyle: Theme.of(context).textTheme.headline1,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w300,
+                  ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => MainScreen()));
+                },
               ),
             ),
           ],
