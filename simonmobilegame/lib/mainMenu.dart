@@ -27,7 +27,7 @@ class MainMenu extends StatelessWidget {
               ),
             ),
             Container(
-              width: 120.0,
+              width: 200.0,
               decoration: BoxDecoration(
                   color: Colors.lightBlue,
                   borderRadius: BorderRadius.only(
@@ -38,9 +38,9 @@ class MainMenu extends StatelessWidget {
                   )),
               child: FlatButton(
                 child: Text(
-                  "Single Player",
-                  style: GoogleFonts.fredokaOne(
-                    color: Colors.red,
+                  "Start",
+                  style: GoogleFonts.pressStart2p(
+                    color: Colors.black,
                     textStyle: Theme.of(context).textTheme.headline1,
                     fontSize: 25,
                     fontWeight: FontWeight.w300,

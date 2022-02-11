@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:audioplayers/audio_cache.dart';
 import 'dart:math';
 
@@ -16,6 +17,8 @@ class _MainScreenState extends State<MainScreen> {
   List<String> userChoice = [];
   bool gameStatus = false;
 
+  AudioPlayer audioPlayer = AudioPlayer();
+
   @override
   Widget build(BuildContext context) {
     // Generate the first color
@@ -26,6 +29,7 @@ class _MainScreenState extends State<MainScreen> {
     }
 
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         leading: FlatButton(
           onPressed: () {},
@@ -48,45 +52,96 @@ class _MainScreenState extends State<MainScreen> {
               child: Text(
                 "Level " + level.toString(),
                 style: GoogleFonts.pressStart2p(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 30,
                   fontWeight: FontWeight.w700,
                 ),
               ),
             ),
 
-            // Buttons
+            //Buttons
             Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    FlatButton(
-                        child: Text("Green"),
-                        color: Colors.green,
-                        onPressed: () {
-                          _tapped("green");
-                        }),
-                    FlatButton(
-                        child: Text("Red"),
-                        onPressed: () {
-                          _tapped("red");
-                        })
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          )),
+                      child: FlatButton(
+                          child: Text("Green"),
+                          // color: Colors.green,
+                          minWidth: 150,
+                          height: 150,
+                          onPressed: () {
+                            _tapped("green");
+                          }),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          )),
+                      child: FlatButton(
+                          child: Text("Red"),
+                          minWidth: 150,
+                          height: 150,
+                          onPressed: () {
+                            _tapped("red");
+                          }),
+                    )
                   ],
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    FlatButton(
-                        child: Text("Yellow"),
-                        onPressed: () {
-                          _tapped("yellow");
-                        }),
-                    FlatButton(
-                        child: Text("Blue"),
-                        onPressed: () {
-                          _tapped("blue");
-                        })
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.yellow,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          )),
+                      child: FlatButton(
+                          child: Text("Yellow"),
+                          minWidth: 150,
+                          height: 150,
+                          onPressed: () {
+                            _tapped("yellow");
+                          }),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            topRight: Radius.circular(20),
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          )),
+                      child: FlatButton(
+                          child: Text("Blue"),
+                          minWidth: 150,
+                          height: 150,
+                          onPressed: () {
+                            _tapped("blue");
+                          }),
+                    )
                   ],
                 ),
               ],
@@ -141,12 +196,19 @@ class _MainScreenState extends State<MainScreen> {
   void playSequence() {
     for (int i = 0; i < gamePattern.length; i++) {
       print('sequence' + i.toString() + ' : ' + gamePattern[i].toString());
+      playSound(gamePattern[i]);
     }
   }
 
   void playSound(chosenColor) {
-    print('assets/sounds/' + chosenColor.toString() + '.mp3');
-    print(userChoice);
+    String url = "";
+    url = chosenColor.toString() + '.mp3';
+    print(url);
+    // audioPlayer.play(url);
+    final player = AudioCache();
+    player.play(url);
+    // playLocal(url);
+
     //final player = AudioCache();
     //player.play('assets/sounds/' + chosenColor.toString() + '.mp3');
   }
@@ -158,3 +220,10 @@ class _MainScreenState extends State<MainScreen> {
     gameStatus = false;
   }
 }
+
+// Border buildBorder() {
+//   return Border(
+//     left: bs,
+//     top: bs,
+//   );
+// }
