@@ -1,8 +1,10 @@
 // ignore: prefer_const_constructors
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:audioplayers/audioplayers.dart';
+// import 'package:audioplayers/audioplayers.dart';
 // import 'package:audioplayers/audio_cache.dart';
 import 'dart:math';
 
@@ -37,7 +39,7 @@ class _MainScreenState extends State<MainScreen> {
   List<String> userChoice = [];
   bool gameStatus = false;
 
-  AudioPlayer audioPlayer = AudioPlayer();
+  // AudioPlayer audioPlayer = AudioPlayer();
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +55,10 @@ class _MainScreenState extends State<MainScreen> {
       appBar: AppBar(
         leading: TextButton(
           onPressed: () {},
-          child: Icon(Icons.umbrella),
+          child: const Icon(Icons.umbrella),
         ),
-        title: Center(child: Text("Repeat")),
-        actions: [
+        title: const Center(child: Text("Repeat")),
+        actions: const [
           Icon(
             Icons.favorite,
           ),
@@ -68,14 +70,12 @@ class _MainScreenState extends State<MainScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             //Level
-            Container(
-              child: Text(
-                "Level " + level.toString(),
-                style: GoogleFonts.pressStart2p(
-                  color: Colors.white,
-                  fontSize: 30,
-                  fontWeight: FontWeight.w700,
-                ),
+            Text(
+              "Level " + level.toString(),
+              style: GoogleFonts.pressStart2p(
+                color: Colors.white,
+                fontSize: 30,
+                fontWeight: FontWeight.w700,
               ),
             ),
 
@@ -86,20 +86,21 @@ class _MainScreenState extends State<MainScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SizedBox(
+                      width: 150,
+                      height: 150,
                       child: TextButton(
-                          child: Text("Green"),
+                          child: const Text("Green"),
                           // color: Colors.green,
-                          width: 150,
-                          height: 150,
+
                           onPressed: () {
                             _tapped("green");
                           }),
                     ),
                     SizedBox(
+                      width: 150,
+                      height: 150,
                       child: TextButton(
-                          width: 150,
-                          height: 150,
-                          child: Text("Red"),
+                          child: const Text("Red"),
                           onPressed: () {
                             _tapped("red");
                           }),
@@ -112,20 +113,20 @@ class _MainScreenState extends State<MainScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    const SizedBox(
-                      width: 50;
-                      height: 150;
+                    SizedBox(
+                      width: 50,
+                      height: 150,
                       child: TextButton(
-                          child: Text("Yellow"),
+                          child: const Text("Yellow"),
                           onPressed: () {
                             _tapped("yellow");
                           }),
                     ),
-                    const SizedBox(
-                      width: 50;
-                      height: 150;
+                    SizedBox(
+                      width: 50,
+                      height: 150,
                       child: TextButton(
-                          child: Text("Blue"),
+                          child: const Text("Blue"),
                           onPressed: () {
                             _tapped("blue");
                           }),
@@ -164,7 +165,7 @@ class _MainScreenState extends State<MainScreen> {
       userChoice = [];
       level++;
 
-      Random random = new Random();
+      Random random = Random();
       int randomIndex = random.nextInt(4);
       gamePattern.add(simonColors[randomIndex]);
       print('gamePattern = ' + gamePattern.toString());
@@ -176,7 +177,7 @@ class _MainScreenState extends State<MainScreen> {
   void _tapped(chosenColor) {
     setState(() {
       userChoice.add(chosenColor);
-      playSound(chosenColor);
+      //playSound(chosenColor);
       checkUserInput();
     });
   }
@@ -193,8 +194,8 @@ class _MainScreenState extends State<MainScreen> {
     url = chosenColor.toString() + '.mp3';
     print(url);
     // audioPlayer.play(url);
-    final player = AudioCache();
-    player.play(url);
+    // final player = AudioCache();
+    // player.play(url);
     // playLocal(url);
 
     //final player = AudioCache();
